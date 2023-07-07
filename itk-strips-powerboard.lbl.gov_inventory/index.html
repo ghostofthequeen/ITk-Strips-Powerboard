@@ -1,1 +1,315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Strips Inventory - LBNL</title>
+
+    <link rel="stylesheet" href="static/inventory.css">
+
+  </head>
+  
+  <body>
+    <table border="1" frame="void" rules="columns">
+      <caption>ATLAS Powerboard Inventory</caption>
+      <tr class="spacer">
+        <th colspan="11" class="sectionheader">Boards' Stages at LBL</th>
+	<td colspan="1" class="empty">&nbsp</td>
+      </tr>
+      <tr class="subsectionheader">
+        <td/>
+        {% for stage in stages.columns %}
+        <th class="subsectionheader">{{ stage }}</th>
+        {% endfor %}
+	<td colspan="1" class="empty">&nbsp</td>
+      </tr>
+      {% set continue = false %}
+      {% for version,counts in stages.iterrows() %}       
+        {% if version == "3.0" or version == "3.0b" or version == "dummy" %} 
+          {% set continue = true %}
+	{% endif %}
+	{% if not continue %}
+	<tr>
+	<th scope="row" class="subsectionheader">{{ version }}</th>
+        {% for count in counts %}
+        <td class="count">{{ count }}</td>
+	{% endfor %}
+	<td colspan="1" class="empty">&nbsp</td>
+	{% endif %}
+	</tr>
+	{% if continue %}
+          {% set continue = false %}
+	{% endif %}
+      {% endfor %}
+  
+      <tr class="spacer"><td colspan="12" class="empty">&nbsp</td></tr>
+      <tr class="spacer">
+        <th colspan="5" class="sectionheader">Boards Tested at LBL</th>
+	<td colspan="7" class="empty">&nbsp</td>
+      </tr>
+      <tr class="subsectionheader">
+	<td/>
+	<th class="subsectionheader">Untested</th>
+	<th class="subsectionheader">In Testing</th>
+	<th class="subsectionheader">Tested and Passed</th>
+	<th class="subsectionheader">Tested and Failed</th>
+	<td colspan="7" class="empty">&nbsp</td>
+      </tr>
+      {% for i in range(0,(teststatus)| length) %}
+        {% for key in teststatus[i] %}
+	  <tr>
+          <th scope=row class="subsectionheader">{{ key }}</th>
+	  <td class="count">{{ teststatus[i][key]['notTested'] }}</td>
+	  <td class="count">{{ teststatus[i][key]['inTesting'] }}</td>
+	  <td class="count">{{ teststatus[i][key]['Tested and Passed'] }}</td>
+	  <td class="count">{{ teststatus[i][key]['Tested and Failed'] }}</td>
+	  <td colspan="7" class="empty">&nbsp</td>
+        {% endfor %}
+      {% endfor %}
+
+      </tr>
+
+      <tr class="spacer"><td colspan="12" class="empty">&nbsp</td></tr>
+      <tr class="spacer">
+      <th colspan="10" class="sectionheader">Boards Produced by LBL</th>
+      <td colspan="2" class="empty">&nbsp</td>
+      </tr>
+      <th class="corner">&nbsp</th>
+      <th class="subsectionheader">Before 2022</th>
+      {% for pb in allpbs %}
+	{% if pb.name is defined %}
+	  {% set continue = true %}
+	{% endif %}
+	{% if not continue %}
+	{% if pb.title == vers[0] %}
+	{% if pb.date[2:4] == '22' %}
+	  {% if pb.date[4:6] == '01' %}
+	    <th class="subsectionheader">Jan 2022</th>
+	  {% elif pb.date[4:6] == '02' %}
+	    <th class="subsectionheader">Feb 2022</th>
+	  {% elif pb.date[4:6] == '03' %}
+	    <th class="subsectionheader">Mar 2022</th>
+	  {% elif pb.date[4:6] == '04' %}
+	    <th class="subsectionheader">Apr 2022</th>
+	  {% elif pb.date[4:6] == '05' %}
+	    <th class="subsectionheader">May 2022</th>
+	  {% elif pb.date[4:6] == '06' %}
+	    <th class="subsectionheader">Jun 2022</th>
+	  {% elif pb.date[4:6] == '07' %}
+	    <th class="subsectionheader">Jul 2022</th>
+	  {% elif pb.date[4:6] == '08' %}
+	    <th class="subsectionheader">Aug 2022</th>
+	  {% elif pb.date[4:6] == '09' %}
+	    <th class="subsectionheader">Sep 2022</th>
+	  {% elif pb.date[4:6] == '10' %}
+	    <th class="subsectionheader">Oct 2022</th>
+	  {% elif pb.date[4:6] == '11' %}
+	    <th class="subsectionheader">Nov 2022</th>
+	  {% elif pb.date[4:6] == '12' %}
+	    <th class="subsectionheader">Dec 2022</th>
+	  {% endif %}
+	{% elif pb.date[2:4] == '23' %}
+	  {% if pb.date[4:6] == '01' %}
+	    <th class="subsectionheader">Jan 2023</th>
+	  {% elif pb.date[4:6] == '02' %}
+	    <th class="subsectionheader">Feb 2023</th>
+	  {% elif pb.date[4:6] == '03' %}
+	    <th class="subsectionheader">Mar 2023</th>
+	  {% elif pb.date[4:6] == '04' %}
+	    <th class="subsectionheader">Apr 2023</th>
+	  {% elif pb.date[4:6] == '05' %}
+	    <th class="subsectionheader">May 2023</th>
+	  {% elif pb.date[4:6] == '06' %}
+	    <th class="subsectionheader">Jun 2023</th>
+	  {% elif pb.date[4:6] == '07' %}
+	    <th class="subsectionheader">Jul 2023</th>
+	  {% elif pb.date[4:6] == '08' %}
+	    <th class="subsectionheader">Aug 2023</th>
+	  {% elif pb.date[4:6] == '09' %}
+	    <th class="subsectionheader">Sep 2023</th>
+	  {% elif pb.date[4:6] == '10' %}
+	    <th class="subsectionheader">Oct 2023</th>
+	  {% elif pb.date[4:6] == '11' %}
+	    <th class="subsectionheader">Nov 2023</th>
+	  {% elif pb.date[4:6] == '12' %}
+	    <th class="subsectionheader">Dec 2023</th>
+	  {% endif %}
+	{% elif pb.date[2:4] == '24' %}
+	  {% if pb.date[4:6] == '01' %}
+	    <th class="subsectionheader">Jan 2024</th>
+	  {% elif pb.date[4:6] == '02' %}
+	    <th class="subsectionheader">Feb 2024</th>
+	  {% elif pb.date[4:6] == '03' %}
+	    <th class="subsectionheader">Mar 2024</th>
+	  {% elif pb.date[4:6] == '04' %}
+	    <th class="subsectionheader">Apr 2024</th>
+	  {% elif pb.date[4:6] == '05' %}
+	    <th class="subsectionheader">May 2024</th>
+	  {% elif pb.date[4:6] == '06' %}
+	    <th class="subsectionheader">Jun 2024</th>
+	  {% elif pb.date[4:6] == '07' %}
+	    <th class="subsectionheader">Jul 2024</th>
+	  {% elif pb.date[4:6] == '08' %}
+	    <th class="subsectionheader">Aug 2024</th>
+	  {% elif pb.date[4:6] == '09' %}
+	    <th class="subsectionheader">Sep 2024</th>
+	  {% elif pb.date[4:6] == '10' %}
+	    <th class="subsectionheader">Oct 2024</th>
+	  {% elif pb.date[4:6] == '11' %}
+	    <th class="subsectionheader">Nov 2024</th>
+	  {% elif pb.date[4:6] == '12' %}
+	    <th class="subsectionheader">Dec 2024</th>
+	  {% endif %}
+	{% endif %}
+	{% endif %}
+	{% endif %}
+	{% if continue %}
+	  {% set continue = false %}
+	{% endif %}
+      {% endfor %}
+      <th class="subsectionheader">Total</th>
+      <td colspan="2" class="empty">&nbsp</td>
+      {% for version in vers %}
+      <tr>
+        <th scope=row class="subsectionheader">{{ version }}</th>
+	{% for pb in allpbs %}
+	  {% if pb.title == version %}
+            {% if pb.date == 'old' %}
+	      <td class="count">{{ pb.count }}</td>
+	    {% endif %}
+	  {% endif %}
+
+	{% endfor %}
+	{% for pb in allpbs %}
+	  {% if pb.title == version %}
+	    {% if pb.date == 'old' %}
+	      {% set continue = true %}
+	    {% endif %}
+	    {% if not continue %}
+	      <td class="count">{{ pb.count }}</td>
+	    {% endif %}
+	    {% if continue %}
+	      {% set continue = false %}
+	    {% endif %}
+	  {% endif %}
+	{% endfor %}
+	<td colspan="2" class="empty">&nbsp</td>
+      </tr>
+      {% endfor %}
+	<tr>
+	<th scope=row class = "subsectionheader">Total:</th>
+	{% for pb in allpbs %}
+	  {% if pb.name == 'All Versions:' %}
+	    {% if pb.date == 'old' %}
+	      <td class="count">{{ pb.count }}</td>
+	    {% endif %}
+	  {% endif %}
+	{% endfor %}
+	{% for pb in allpbs %}
+	  {% if pb.name == 'All Versions:' %}
+	    {% if pb.date == 'old' %}
+	      {% set continue = true %}
+	    {% endif %}
+	    {% if not continue %}
+	      <td class="count">{{ pb.count }}</td>
+	    {% endif %}
+	    {% if continue %}
+	      {% set continue = false %}
+	    {% endif %}
+	  {% endif %}
+	  {% if pb.name == 'Total:' %}
+	    <td class="count">{{ pb.count }}</td>
+	    <td colspan="2" class="empty">&nbsp</td>
+	  {% endif %}
+	{% endfor %}
+      </tr>
+      </tr>
+      <tr class="spacer"><td colspan="12" class="empty">&nbsp</td></tr>
+      <tr class="spacer">
+        <th colspan="12" class="sectionheader">Boards at Other Sites</th>
+      </tr>
+
+      {% for v,vdata in ships.groupby(level=0) %}
+      <tr>
+        <th class="corner">{{ v }}</th>
+        {% for stage in vdata.columns %}
+        <th class="subsectionheader">{{ stage }}</th>
+        {% endfor %}
+        <th class="subsectionheader">Total</th> 
+      </tr>
+      {% for loc,counts in vdata.iterrows() %}
+      <tr>
+        {% if loc[1] == 'ZZZZZTotal:' %}
+	  <th scope="row" style="subsectionheader">Total:</th>
+	{% else %}
+	  <th scope="row" style="subsectionheader">{{ loc[1] }}</th>
+	{% endif %}
+	{% for count in counts %}
+        <td class="count">{{ count }}</td>
+        {% endfor %}
+        <td class="count">{{ counts.sum() }}</td>
+      </tr>
+      {% endfor %}
+      {% endfor %}
+      <tr class="spacer"><td colspan="12" class="empty">&nbsp</td></tr>
+      <tr class="spacer">
+        <td colspan="3" class="empty">&nbsp</td>
+        <td colspan="6" rowspan="18"><img src="static/image.jpg" alt="" width="100%"/></td>
+        <td colspan="3" rowspan="18" class="empty">&nbsp</td>
+      </tr>
+      <tr class="spacer"><th colspan="2" class="sectionheader">SMDs</th>
+      <td colspan="1" class="empty">&nbsp</td></tr>
+      <tr class="subsectionheader">
+        <th colspan="2">AMAC</th>
+	<td colspan="1" class="empty">&nbsp</td>
+      </tr>
+      {% for amac in amacs %}
+      <tr>
+        <th scope="row">{{amac.title}}</th>
+        <td class="count">{{amac.count}}</td> 
+	<td colspan="1" class="empty">&nbsp</td>
+      </tr>
+      {% endfor %}
+
+      <tr class="subsectionheader">
+        <th colspan="2">bPOL</th>
+	<td colspan="1" class="empty">&nbsp</td>
+      </tr>
+      {% for bpol in bpols %}
+      <tr>
+        <th scope="row">{{bpol.title}}</th>
+        <td class="count">{{bpol.count}}</td> 
+	<td colspan="1" class="empty">&nbsp</td>
+      </tr>
+      {% endfor %}
+
+      <tr class="subsectionheader">
+        <th colspan="2">Misc</th>
+	<td colspan="1" class="empty">&nbsp</td>
+      </tr>
+      <tr>
+        <th scope="row">Shield Boxes</th>
+        <td class="count" width="50">{{N_shieldbox}}</td>
+	<td colspan="1" class="empty">&nbsp</td>
+      </tr>
+      <tr>
+        <th scope="row">Coils</th> 
+        <td class="count">{{N_coil}}</td> 
+	<td colspan="1" class="empty">&nbsp</td>
+      </tr>
+      <tr>
+        <th scope="row">HVmux</th>
+        <td class="count">{{N_hvmux}}</td>
+	<td colspan="1" class="empty">&nbsp</td>
+      </tr>
+      <tr>
+        <th scope="row">linPOL</th>
+        <td class="count">{{N_linpol}}</td> 
+	<td colspan="1" class="empty">&nbsp</td>
+      </tr>
+    </table>
+
+    <div id="footer">
+      Generated on {{ date_generated }}
+    </div>
+  </body>
+</html>
 
