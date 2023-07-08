@@ -119,5 +119,4 @@ for name in names:
             plt.xlabel('CAL Input (mV)')
             plt.ylabel('AMAC CAL (counts)')
             ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), title='Temperature ($^{\circ}$C)')
-            fig.savefig('jump.jpg', bbox_inches='tight', dpi=600)
             plt.show()
