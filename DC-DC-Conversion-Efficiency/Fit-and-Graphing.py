@@ -111,9 +111,6 @@ for filename in os.listdir(directory): #for every .csv file I've put into the fo
         x = iout                 #convenience
         y = eff1_corrected
         z = PTAT
-
-       # for i in range(len(hour)):
-        #    time.append(dt.time(int(float(hour[i])),int(float(minute[i])),int(float(second[i]))))
         
         for i in range(len(x)):
             x[i] = float(x[i])
@@ -132,14 +129,12 @@ for filename in os.listdir(directory): #for every .csv file I've put into the fo
             x.pop(badi[i])
             y.pop(badi[i])
             z.pop(badi[i])
-         #   time.pop(badi[i])
             
         
         for i in range(len(z)):
             netx.append(x[i])
             nety.append(y[i])
             netz.append(z[i])
-          #  nettime.append(time[i])
             
 
             if -17.5<=z[i]<-12.5:
@@ -345,8 +340,9 @@ plt.legend(bbox_to_anchor=[0.5, 0.5],loc='upper center', ncol=3, prop={'size': 7
 plt.axis([0.3, 3.6, 50, 80])
 plt.show()
 
-df = pd.DataFrame(totaly, index=[35,30,25,20,15,10,5,0,-5,-10,-15], columns=[0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.0,3.1,3.2,3.3,3.4,3.5])
+
 # plot a heatmap with annotation
+df = pd.DataFrame(totaly, index=[35,30,25,20,15,10,5,0,-5,-10,-15], columns=[0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.0,3.1,3.2,3.3,3.4,3.5])
 plt.figure(figsize=(36, 20))
 sns.set(font_scale=2.5)
 g = sns.heatmap(df, cmap=cm.gist_rainbow, annot=True, annot_kws={"size": 25}, cbar_kws={'label': 'Efficiency (%)'})
@@ -355,4 +351,90 @@ g.set_xticks(np.arange(0.5,34.5,2))
 g.set_xticklabels([0.3,0.5,0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5])
 plt.title('DC/DC Conversion Climate Chamber Test Efficiency Heatmap')
 plt.ylabel('Temperature ($^{\circ}$C)')
-plt.savefig("heatmap.jpg", format="jpg", dpi=400)
+
+# create fit for efficiency data in terms of PTAT and IOUT
+singletotalx = []
+for i in range(len(temp_35_x)):
+    singletotalx.append(temp_35_x[i])
+for i in range(len(temp_30_x)):
+    singletotalx.append(temp_30_x[i])
+for i in range(len(temp_25_x)):
+    singletotalx.append(temp_25_x[i])
+for i in range(len(temp_20_x)):
+    singletotalx.append(temp_20_x[i])
+for i in range(len(temp_15_x)):
+    singletotalx.append(temp_15_x[i])
+for i in range(len(temp_10_x)):
+    singletotalx.append(temp_10_x[i])
+for i in range(len(temp_05_x)):
+    singletotalx.append(temp_05_x[i])
+for i in range(len(temp_00_x)):
+    singletotalx.append(temp_00_x[i])
+for i in range(len(temp_neg_05_x)):
+    singletotalx.append(temp_neg_05_x[i])
+for i in range(len(temp_neg_10_x)):
+    singletotalx.append(temp_neg_10_x[i])
+for i in range(len(temp_neg_15_x)):
+    singletotalx.append(temp_neg_15_x[i])
+
+singletotaly = []
+for i in range(len(temp_35_y)):
+    singletotaly.append(temp_35_y[i])
+for i in range(len(temp_30_y)):
+    singletotaly.append(temp_30_y[i])
+for i in range(len(temp_25_y)):
+    singletotaly.append(temp_25_y[i])
+for i in range(len(temp_20_y)):
+    singletotaly.append(temp_20_y[i])
+for i in range(len(temp_15_y)):
+    singletotaly.append(temp_15_y[i])
+for i in range(len(temp_10_y)):
+    singletotaly.append(temp_10_y[i])
+for i in range(len(temp_05_y)):
+    singletotaly.append(temp_05_y[i])
+for i in range(len(temp_00_y)):
+    singletotaly.append(temp_00_y[i])
+for i in range(len(temp_neg_05_y)):
+    singletotaly.append(temp_neg_05_y[i])
+for i in range(len(temp_neg_10_y)):
+    singletotaly.append(temp_neg_10_y[i])
+for i in range(len(temp_neg_15_y)):
+    singletotaly.append(temp_neg_15_y[i])
+
+singletotalz = []
+for i in range(len(temp_35_z)):
+    singletotalz.append(temp_35_z[i])
+for i in range(len(temp_30_z)):
+    singletotalz.append(temp_30_z[i])
+for i in range(len(temp_25_z)):
+    singletotalz.append(temp_25_z[i])
+for i in range(len(temp_20_z)):
+    singletotalz.append(temp_20_z[i])
+for i in range(len(temp_15_z)):
+    singletotalz.append(temp_15_z[i])
+for i in range(len(temp_10_z)):
+    singletotalz.append(temp_10_z[i])
+for i in range(len(temp_05_z)):
+    singletotalz.append(temp_05_z[i])
+for i in range(len(temp_00_z)):
+    singletotalz.append(temp_00_z[i])
+for i in range(len(temp_neg_05_z)):
+    singletotalz.append(temp_neg_05_z[i])
+for i in range(len(temp_neg_10_z)):
+    singletotalz.append(temp_neg_10_z[i])
+for i in range(len(temp_neg_15_z)):
+    singletotalz.append(temp_neg_15_z[i])
+    
+import numpy as np
+from scipy.optimize import curve_fit
+new = []
+def func(X, a, b, c, d, e, f, g, h, j, k, l, m, n, o):
+    P,I = X
+    return (a*P + b)*(I**6) + (c*P + d)*(I**5) + (e*P + f)*(I**4) + (g*P + h)*(I**3) + (j*P + k)*(I**2) + (l*P + m)*(I) + (n*P + o)
+
+
+x = singletotalz
+y = singletotalx
+p0 = 0.00001, -0.0291, -0.0001, 0.3444, 0.0001, -1.6044, -0.0008, 3.6983, 0.0006, -4.4644, -0.0005, 2.7169, 0.0001, 0.0382
+z = singletotaly
+a_through_o = curve_fit(func, (x,y), z, p0)
