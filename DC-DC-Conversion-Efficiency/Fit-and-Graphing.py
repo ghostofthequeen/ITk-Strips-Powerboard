@@ -6,6 +6,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 import datetime as dt
+from matplotlib import cm
 
 
 #setting up empty temperature matrices
@@ -327,193 +328,31 @@ dfy_30 = pd.Series(temp_30_y)
 dfx_35 = pd.Series(temp_35_x)
 dfy_35 = pd.Series(temp_35_y)
 
-x_0mA = []
-y_0mA = []
-x_10mA = []
-y_10mA = []
-x_20mA = []
-y_20mA = []
-x_30mA = []
-y_30mA = []
-x_40mA = []
-y_40mA = []
-x_50mA = []
-y_50mA = []
-x_60mA = []
-y_60mA = []
-x_70mA = []
-y_70mA = []
-x_80mA = []
-y_80mA = []
-x_90mA = []
-y_90mA = []
-x_100mA = []
-y_100mA = []
-x_110mA = []
-y_110mA = []
-x_120mA = []
-y_120mA = []
-x_130mA = []
-y_130mA = []
-x_140mA = []
-y_140mA = []
-x_150mA = []
-y_150mA = []
-x_160mA = []
-y_160mA = []
-x_170mA = []
-y_170mA = []
-x_180mA = []
-y_180mA = []
-x_190mA = []
-y_190mA = []
-x_200mA = []
-y_200mA = []
-x_210mA = []
-y_210mA = []
-x_220mA = []
-y_220mA = []
-x_230mA = []
-y_230mA = []
-x_240mA = []
-y_240mA = []
-x_250mA = []
-y_250mA = []
-x_260mA = []
-y_260mA = []
-x_270mA = []
-y_270mA = []
-x_280mA = []
-y_280mA = []
-x_290mA = []
-y_290mA = []
-x_300mA = []
-y_300mA = []
-x_310mA = []
-y_310mA = []
-x_320mA = []
-y_320mA = []
-x_330mA = []
-y_330mA = []
-x_340mA = []
-y_340mA = []
-x_350mA = []
-y_350mA = []
-
-for i in range(len(totalx)):
-    x_30mA.append(totalz[i][0])
-    y_30mA.append(totaly[i][0])
-    x_40mA.append(totalz[i][1])
-    y_40mA.append(totaly[i][1])
-    x_50mA.append(totalz[i][2])
-    y_50mA.append(totaly[i][2])
-    x_60mA.append(totalz[i][3])
-    y_60mA.append(totaly[i][3])
-    x_70mA.append(totalz[i][4])
-    y_70mA.append(totaly[i][4])
-    x_80mA.append(totalz[i][5])
-    y_80mA.append(totaly[i][5])
-    x_90mA.append(totalz[i][6])
-    y_90mA.append(totaly[i][6])
-    x_100mA.append(totalz[i][7])
-    y_100mA.append(totaly[i][7])
-    x_110mA.append(totalz[i][8])
-    y_110mA.append(totaly[i][8])
-    x_120mA.append(totalz[i][9])
-    y_120mA.append(totaly[i][9])
-    x_130mA.append(totalz[i][10])
-    y_130mA.append(totaly[i][10])
-    x_140mA.append(totalz[i][11])
-    y_140mA.append(totaly[i][11])
-    x_150mA.append(totalz[i][12])
-    y_150mA.append(totaly[i][12])
-    x_160mA.append(totalz[i][13])
-    y_160mA.append(totaly[i][13])
-    x_170mA.append(totalz[i][14])
-    y_170mA.append(totaly[i][14])
-    x_180mA.append(totalz[i][15])
-    y_180mA.append(totaly[i][15])
-    x_190mA.append(totalz[i][16])
-    y_190mA.append(totaly[i][16])
-    x_200mA.append(totalz[i][17])
-    y_200mA.append(totaly[i][17])
-    x_210mA.append(totalz[i][18])
-    y_210mA.append(totaly[i][18])
-    x_220mA.append(totalz[i][19])
-    y_220mA.append(totaly[i][19])
-    x_230mA.append(totalz[i][20])
-    y_230mA.append(totaly[i][20])
-    x_240mA.append(totalz[i][21])
-    y_240mA.append(totaly[i][21])
-    x_250mA.append(totalz[i][22])
-    y_250mA.append(totaly[i][22])
-    x_260mA.append(totalz[i][23])
-    y_260mA.append(totaly[i][23])
-    x_270mA.append(totalz[i][24])
-    y_270mA.append(totaly[i][24])
-    x_280mA.append(totalz[i][25])
-    y_280mA.append(totaly[i][25])
-    x_290mA.append(totalz[i][26])
-    y_290mA.append(totaly[i][26])
-    x_300mA.append(totalz[i][27])
-    y_300mA.append(totaly[i][27])
-    x_310mA.append(totalz[i][28])
-    y_310mA.append(totaly[i][28])
-    x_320mA.append(totalz[i][29])
-    y_320mA.append(totaly[i][29])
-    x_330mA.append(totalz[i][30])
-    y_330mA.append(totaly[i][30])
-    x_340mA.append(totalz[i][31])
-    y_340mA.append(totaly[i][31])
-    x_350mA.append(totalz[i][32])
-    y_350mA.append(totaly[i][32])
-
-#plt.scatter(x_30mA, y_30mA, s=10, label = '$30mA$', color = 'red')
-#plt.scatter(x_40mA, y_40mA, s=10, label = '$40mA$', color = 'orangered')
-#plt.scatter(x_50mA, y_50mA, s=10, label = '$50mA$', color = 'orange')
-#plt.scatter(x_60mA, y_60mA, s=10, label = '$60mA$', color = 'gold')
-#plt.scatter(x_70mA, y_70mA, s=10, label = '$70mA$', color = 'yellow')
-#plt.scatter(x_80mA, y_80mA, s=10, label = '$80mA$', color = 'greenyellow')
-#plt.scatter(x_90mA, y_90mA, s=10, label = '$90mA$', color = 'green')
-#plt.scatter(x_100mA, y_100mA, s=10, label = '$100mA$', color = 'aqua')
-#plt.scatter(x_110mA, y_110mA, s=10, label = '$110mA$', color = 'deepskyblue')
-#plt.scatter(x_120mA, y_120mA, s=10, label = '$120mA$', color = 'midnightblue')
-#plt.scatter(x_130mA, y_130mA, s=10, label = '$130mA$', color = 'darkviolet')
-#plt.scatter(x_140mA, y_140mA, s=10, label = '$140mA$', color = 'red')
-#plt.scatter(x_150mA, y_150mA, s=10, label = '$150mA$', color = 'orangered')
-#plt.scatter(x_160mA, y_160mA, s=10, label = '$160mA$', color = 'orange')
-#plt.scatter(x_170mA, y_170mA, s=10, label = '$170mA$', color = 'gold')
-#plt.scatter(x_180mA, y_180mA, s=10, label = '$180mA$', color = 'yellow')
-#plt.scatter(x_190mA, y_190mA, s=10, label = '$190mA$', color = 'greenyellow')
-#plt.scatter(x_200mA, y_200mA, s=10, label = '$200mA$', color = 'green')
-#plt.scatter(x_210mA, y_210mA, s=10, label = '$210mA$', color = 'aqua')
-#plt.scatter(x_220mA, y_220mA, s=10, label = '$220mA$', color = 'deepskyblue')
-#plt.scatter(x_230mA, y_230mA, s=10, label = '$230mA$', color = 'midnightblue')
-#plt.scatter(x_240mA, y_240mA, s=10, label = '$240mA$', color = 'darkviolet')
-#plt.scatter(x_250mA, y_250mA, s=10, label = '$250mA$', color = 'red')
-#plt.scatter(x_260mA, y_260mA, s=10, label = '$260mA$', color = 'orangered')
-#plt.scatter(x_270mA, y_270mA, s=10, label = '$270mA$', color = 'orange')
-#plt.scatter(x_280mA, y_280mA, s=10, label = '$280mA$', color = 'gold')
-#plt.scatter(x_290mA, y_290mA, s=10, label = '$290mA$', color = 'yellow')
-#plt.scatter(x_300mA, y_300mA, s=10, label = '$300mA$', color = 'greenyellow')
-#plt.scatter(x_310mA, y_310mA, s=10, label = '$310mA$', color = 'green')
-#plt.scatter(x_320mA, y_320mA, s=10, label = '$320mA$', color = 'aqua')
-#plt.scatter(x_330mA, y_330mA, s=10, label = '$330mA$', color = 'deepskyblue')
-#plt.scatter(x_340mA, y_340mA, s=10, label = '$340mA$', color = 'midnightblue')
-#plt.scatter(x_350mA, y_350mA, s=10, label = '$350mA$', color = 'darkviolet')
 plt.scatter(temp_35_x, temp_35_y, s=10, label = '$35 ^{\circ} C$', color = 'red')
-#plt.scatter(temp_30_x, temp_30_y, s=10, label = '$30 ^{\circ} C$', color = 'orangered')
-#plt.scatter(temp_25_x, temp_25_y, s=10, label = '$25 ^{\circ} C$', color = 'orange')
-#plt.scatter(temp_20_x, temp_20_y, s=10, label = '$20 ^{\circ} C$', color = 'gold')
-#plt.scatter(temp_15_x, temp_15_y, s=10, label = '$15 ^{\circ} C$', color = 'yellow')
-#plt.scatter(temp_10_x, temp_10_y, s=10, label = '$10 ^{\circ} C$', color = 'greenyellow')
-#plt.scatter(temp_05_x, temp_05_y, s=10, label = '$5 ^{\circ} C$', color = 'green')
-#plt.scatter(temp_00_x, temp_00_y, s=10, label = '$0 ^{\circ} C$', color = 'aqua')
-#plt.scatter(temp_neg_05_x, temp_neg_05_y, s=10, label = '$-5 ^{\circ} C$', color = 'deepskyblue')
-#plt.scatter(temp_neg_10_x, temp_neg_10_y, s=10, label = '$-10 ^{\circ} C$', color = 'midnightblue')
-#plt.scatter(temp_neg_15_x, temp_neg_15_y, s=10, label = '$-15 ^{\circ} C$', color = 'darkviolet')
+plt.scatter(temp_30_x, temp_30_y, s=10, label = '$30 ^{\circ} C$', color = 'orangered')
+plt.scatter(temp_25_x, temp_25_y, s=10, label = '$25 ^{\circ} C$', color = 'orange')
+plt.scatter(temp_20_x, temp_20_y, s=10, label = '$20 ^{\circ} C$', color = 'gold')
+plt.scatter(temp_15_x, temp_15_y, s=10, label = '$15 ^{\circ} C$', color = 'yellow')
+plt.scatter(temp_10_x, temp_10_y, s=10, label = '$10 ^{\circ} C$', color = 'greenyellow')
+plt.scatter(temp_05_x, temp_05_y, s=10, label = '$5 ^{\circ} C$', color = 'green')
+plt.scatter(temp_00_x, temp_00_y, s=10, label = '$0 ^{\circ} C$', color = 'aqua')
+plt.scatter(temp_neg_05_x, temp_neg_05_y, s=10, label = '$-5 ^{\circ} C$', color = 'deepskyblue')
+plt.scatter(temp_neg_10_x, temp_neg_10_y, s=10, label = '$-10 ^{\circ} C$', color = 'midnightblue')
+plt.scatter(temp_neg_15_x, temp_neg_15_y, s=10, label = '$-15 ^{\circ} C$', color = 'darkviolet')
 plt.xlabel('IOUT (A)')
 plt.ylabel('Efficiency (%)')
 plt.legend(bbox_to_anchor=[0.5, 0.5],loc='upper center', ncol=3, prop={'size': 7})
 plt.axis([0.3, 3.6, 50, 80])
 plt.show()
+
+df = pd.DataFrame(totaly, index=[35,30,25,20,15,10,5,0,-5,-10,-15], columns=[0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.0,3.1,3.2,3.3,3.4,3.5])
+# plot a heatmap with annotation
+plt.figure(figsize=(36, 20))
+sns.set(font_scale=2.5)
+g = sns.heatmap(df, cmap=cm.gist_rainbow, annot=True, annot_kws={"size": 25}, cbar_kws={'label': 'Efficiency (%)'})
+plt.xlabel('IOUT (A)')
+g.set_xticks(np.arange(0.5,34.5,2))
+g.set_xticklabels([0.3,0.5,0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5])
+plt.title('DC/DC Conversion Climate Chamber Test Efficiency Heatmap')
+plt.ylabel('Temperature ($^{\circ}$C)')
+plt.savefig("heatmap.jpg", format="jpg", dpi=400)
